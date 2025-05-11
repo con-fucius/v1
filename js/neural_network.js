@@ -1,72 +1,86 @@
-var w = c.width = 500,
-		h = c.height = 500,
-		ctx = c.getContext( '2d' ),
-		
-		opts = {
-			
-			range: 180,
-			baseConnections: 3,
-			addedConnections: 5,
-			baseSize: 5,
-			minSize: 1,
-			dataToConnectionSize: .4,
-			sizeMultiplier: .7,
-			allowedDist: 40,
-			baseDist: 40,
-			addedDist: 30,
-			connectionAttempts: 100,
-			
-			dataToConnections: 1,
-			baseSpeed: .04,
-			addedSpeed: .05,
-			baseGlowSpeed: .4,
-			addedGlowSpeed: .4,
-			
-			rotVelX: .003,
-			rotVelY: .002,
-			
-			repaintColor: '#181D26',
-			connectionColor: 'hsla(200,60%,light%,alp)',
-			rootColor: 'hsla(0,60%,light%,alp)',
-			endColor: 'hsla(160,20%,light%,alp)',
-			dataColor: 'hsla(40,80%,light%,alp)',
-			
-			wireframeWidth: .1,
-			wireframeColor: '#88f',
-			
-			depth: 250,
-			focalLength: 250,
-			vanishPoint: {
-				x: w / 2,
-				y: h / 2
-			}
-		},
-		
-		squareRange = opts.range * opts.range,
-		squareAllowed = opts.allowedDist * opts.allowedDist,
-		mostDistant = opts.depth + opts.range,
-		sinX = sinY = 0,
-		cosX = cosY = 0,
-		
-		connections = [],
-		toDevelop = [],
-		data = [],
-		all = [],
-		tick = 0,
-		totalProb = 0,
-		
-		animating = false,
-		
-		Tau = Math.PI * 2;
+var c = document.getElementById('c'); // Ensure 'c' is the ID of the canvas in index.html
+var w = c.width = 500, // Or get from canvas actual dimensions if responsive
+    h = c.height = 500, // Or get from canvas actual dimensions if responsive
+    ctx = c.getContext( '2d' ),
+    
+    opts = {
+        
+        range: 180,
+        baseConnections: 3,
+        addedConnections: 5,
+        baseSize: 5,
+        minSize: 1,
+        dataToConnectionSize: .4,
+        sizeMultiplier: .7,
+        allowedDist: 40,
+        baseDist: 40,
+        addedDist: 30,
+        connectionAttempts: 100,
+        
+        dataToConnections: 1,
+        baseSpeed: .04,
+        addedSpeed: .05,
+        baseGlowSpeed: .4,
+        addedGlowSpeed: .4,
+        
+        rotVelX: .003,
+        rotVelY: .002,
+        
+        repaintColor: '#050505', // Very dark grey, almost black for the pure black theme
+        connectionColor: 'hsla(200,60%,70%,alp)', // Kept lighter for visibility on dark
+        rootColor: 'hsla(0,60%,70%,alp)',       
+        endColor: 'hsla(160,20%,70%,alp)',      
+        dataColor: 'hsla(40,80%,70%,alp)',       
+        
+        wireframeWidth: .1,
+        wireframeColor: '#337ab7', // A subtle blue for wireframe on dark
+        
+        depth: 250,
+        focalLength: 250,
+        vanishPoint: {
+            x: w / 2,
+            y: h / 2
+        }
+    },
+    
+    squareRange = opts.range * opts.range,
+    squareAllowed = opts.allowedDist * opts.allowedDist,
+    mostDistant = opts.depth + opts.range,
+    sinX = sinY = 0,
+    cosX = cosY = 0,
+    
+    connections = [],
+    toDevelop = [],
+    data = [],
+    all = [],
+    tick = 0,
+    totalProb = 0,
+    
+    animating = false,
+    
+    Tau = Math.PI * 2;
 
-ctx.fillStyle = '#181d26';
-ctx.fillRect( 0, 0, w, h );
-ctx.fillStyle = '#ccc';
-ctx.font = '50px Verdana';
+// Initial clear might not be needed if repaintColor is the same as canvas CSS bg
+// ctx.fillStyle = opts.repaintColor; 
+// ctx.fillRect( 0, 0, w, h );
+// ctx.fillStyle = '#ccc'; // For any text if drawn directly, not used in this version
+// ctx.font = '50px Verdana'; // Not used
 
-window.setTimeout( init, 4 ); // to render the loading screen
+window.setTimeout( init, 4 ); 
 
 function init(){
+    if (!c) { // Check if canvas element exists
+        c = document.getElementById('c');
+        if (!c) {
+            console.error("Neural network canvas 'c' not found.");
+            return;
+        }
+        w = c.width = c.offsetWidth || 500; // Try to get actual size or default
+        h = c.height = c.offsetHeight || 500;
+        ctx = c.getContext('2d');
+        opts.vanishPoint.x = w / 2;
+        opts.vanishPoint.y = h / 2;
+    }
 	
 	connections.length = 0;
 	data.length = 0;
@@ -230,7 +244,7 @@ Data.prototype.step = function(){
 Data.prototype.draw = function(){
 	
 	if( this.ended )
-		return --this.ended; // not sre why the thing lasts 2 frames, but it does
+		return --this.ended; 
 	
 	ctx.beginPath();
 	ctx.strokeStyle = this.screen.color;
@@ -249,17 +263,17 @@ Data.prototype.setConnection = function( connection ){
 		this.connection = connection;
 		this.nextConnection = connection.links[ connection.links.length * Math.random() |0 ];
 		
-		this.ox = connection.x; // original coordinates
+		this.ox = connection.x; 
 		this.oy = connection.y;
 		this.oz = connection.z;
-		this.os = connection.size; // base size
+		this.os = connection.size; 
 		
-		this.nx = this.nextConnection.x; // new
+		this.nx = this.nextConnection.x; 
 		this.ny = this.nextConnection.y;
 		this.nz = this.nextConnection.z;
 		this.ns = this.nextConnection.size;
 		
-		this.dx = this.nx - this.ox; // delta
+		this.dx = this.nx - this.ox; 
 		this.dy = this.ny - this.oy;
 		this.dz = this.nz - this.oz;
 		this.ds = this.ns - this.os;
@@ -273,19 +287,16 @@ Connection.prototype.setScreen = Data.prototype.setScreen = function(){
 			y = this.y,
 			z = this.z;
 	
-	// apply rotation on X axis
 	var Y = y;
 	y = y * cosX - z * sinX;
 	z = z * cosX + Y * sinX;
 	
-	// rot on Y
 	var Z = z;
 	z = z * cosY - x * sinY;
 	x = x * cosY + Z * sinY;
 	
 	this.screen.z = z;
 	
-	// translate on Z
 	z += opts.depth;
 	
 	this.screen.scale = opts.focalLength / z;
@@ -303,7 +314,10 @@ function squareDist( a, b ){
 }
 
 function anim(){
-	
+    if (!c || !ctx) { // Ensure canvas and context are available
+        animating = false;
+        return;
+    }
 	window.requestAnimationFrame( anim );
 	
 	ctx.globalCompositeOperation = 'source-over';
@@ -336,16 +350,8 @@ function anim(){
 	all.sort( function( a, b ){ return b.screen.z - a.screen.z } );
 	all.map( function( item ){ item.draw(); } );
 	
-	/*ctx.beginPath();
-	ctx.strokeStyle = 'red';
-	ctx.arc( opts.vanishPoint.x, opts.vanishPoint.y, opts.range * opts.focalLength / opts.depth, 0, Tau );
-	ctx.stroke();*/
 }
 
-// window.addEventListener( 'resize', function(){
-	
-// 	opts.vanishPoint.x = ( w = c.width = window.innerWidth ) / 2;
-// 	opts.vanishPoint.y = ( h = c.height = window.innerHeight ) / 2;
-// 	ctx.fillRect( 0, 0, w, h );
-// });
-// window.addEventListener( 'click', init );
+// No theme change listener needed as colors are fixed for dark theme
+// No resize listener here, assuming fixed size or responsive CSS for canvas container
+// window.addEventListener( 'click', init ); // Original click to re-init, can be kept or removed

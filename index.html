@@ -10,8 +10,9 @@
         <link href="css/portfolio.css" rel="stylesheet">
 
         <!-- Google Font -->
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Arimo:wght@500&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400;500;600;700&family=Arimo:wght@400;500;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.css">
 
         <!-- Favicon -->
@@ -22,208 +23,268 @@
 
         <!-- Icons -->
         <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
-        <title>Max Schäfer</title>
+        <title>Sam</title>
     </head>
     <body>
+        <canvas id="backgroundCanvas"></canvas> <!-- Full page background animation -->
         <header id="header" class="fixed-top">
-            <div class="py-2 flex-wrap justify-content-center">
-                <a href="/" id="brand-logo" class="align-items-center mb-3 mb-md-0 me-md-auto text-light text-decoration-none">
-                    <span class="fs-5">MAX SCHAEFER</span>
+            <div class="container-fluid d-flex justify-content-between align-items-center py-2 px-3">
+                <a href="#cover" id="brand-logo" class="text-light text-decoration-none">
+                    <span class="fs-5">SAM/IRE</span>
                 </a>
-                <button class="navbar-toggler third-button" type="button" data-toggle="collapse" data-target="#navbarSupportedContent22"
-                    aria-controls="navbarSupportedContent22" aria-expanded="false" aria-label="Toggle navigation">
+                
+                <nav id="nav-desktop" class="d-none d-lg-block"> 
+                    <ul class="nav nav-pills">
+                        <li class="nav-item"><a href="#cover" class="nav-link" aria-current="page">HOME</a></li>
+                        <li class="nav-item"><a href="#skills" class="nav-link">SKILLS</a></li>
+                        <li class="nav-item"><a href="#experience" class="nav-link">EXPERIENCE</a></li>
+                        <li class="nav-item"><a href="#projects" class="nav-link">PROJECTS</a></li>
+                        <li class="nav-item"><a href="#achievements" class="nav-link">ACHIEVEMENTS</a></li>
+                        <li class="nav-item"><a href="#research" class="nav-link">RESEARCH</a></li>
+                        <li class="nav-item"><a href="#braindump" class="nav-link">BRAIN DUMP</a></li>
+                        <li class="nav-item"><a href="#contact" class="nav-link">CONTACT</a></li>
+                        <li class="nav-item"><a id="btn-resume" href="resume.pdf" class="btn btn-outline-light" target="_blank"><i class="fas fa-cloud-download-alt"></i>RESUME</a></li>
+                    </ul>
+                </nav>
+
+                <button class="navbar-toggler third-button d-lg-none" type="button"> 
                     <div class="animated-icon3">
                         <span></span><span></span><span></span>
                     </div>
                 </button>
-
-                <!-- Navigation for desktop -->
-                <nav id="nav-desktop" class="navbar navbar-dark indigo darken-2">
-                    <ul class="nav nav-pills">
-                        <li class="nav-item"><a href="#about" class="nav-link" aria-current="page">About</a></li>
-                        <li class="nav-item"><a href="#competitions" class="nav-link">Competitions</a></li>
-                        <li class="nav-item"><a href="#achievements" class="nav-link">Achievements</a></li>
-                        <li class="nav-item"><a href="#contact" class="nav-link">Contacts</a></li>
-                        <li class="nav-item"><a id="btn-resume" href="https://www.linkedin.com/in/max-schaefer-dev/" class="btn btn-outline-light" target="_blank"><i class="fas fa-cloud-download-alt"></i>CV</a></li>
-                    </ul>
-                </nav>
-
-                <!-- Navigation for mobile devices -->
-                <nav id="nav-mobile" class="sidenav close">
-                    <ul class="nav nav-pills mb-5">
-                        <li class="nav-item"><a href="#about" class="nav-link nav-link-m" aria-current="page">About</a></li>
-                        <li class="nav-item"><a href="#competitions" class="nav-link nav-link-m">Competitions</a></li>
-                        <li class="nav-item"><a href="#achievements" class="nav-link nav-link-m" >Achievements</a></li>
-                        <li class="nav-item"><a href="#contact" class="nav-link nav-link-m">Contact</a></li>
-                        <li class="nav-item"><a id="btn-resume" href="https://www.linkedin.com/in/max-schaefer-dev/" class="btn btn-outline-light" target="_blank"><i class="fas fa-cloud-download-alt"></i>CV</a></li>
-                    </ul>
-                </nav>
             </div>
+                
+            <nav id="nav-mobile" class="sidenav close d-lg-none"> 
+                <ul class="nav nav-pills mb-5 flex-column">
+                    <li class="nav-item"><a href="#cover" class="nav-link nav-link-m" aria-current="page">HOME</a></li>
+                    <li class="nav-item"><a href="#skills" class="nav-link nav-link-m">SKILLS</a></li>
+                    <li class="nav-item"><a href="#experience" class="nav-link nav-link-m">EXPERIENCE</a></li>
+                    <li class="nav-item"><a href="#projects" class="nav-link nav-link-m">PROJECTS</a></li>
+                    <li class="nav-item"><a href="#achievements" class="nav-link nav-link-m" >ACHIEVEMENTS</a></li>
+                    <li class="nav-item"><a href="#research" class="nav-link nav-link-m">RESEARCH</a></li>
+                    <li class="nav-item"><a href="#braindump" class="nav-link nav-link-m">BRAIN DUMP</a></li>
+                    <li class="nav-item"><a href="#contact" class="nav-link nav-link-m">CONTACT</a></li>
+                    <li class="nav-item"><a id="btn-resume-mobile" href="resume.pdf" class="btn btn-outline-light mt-3" target="_blank"><i class="fas fa-cloud-download-alt"></i>RESUME</a></li>
+                </ul>
+            </nav>
         </header>
 
         <!-- Side bar for social links for desktop clients -->
         <div id="side-bar" class="d-flex align-items-end">
             <div class="container d-flex">
-                <a title="Contact Email" href="mailto:max@maxschaefer.tech" target="_blank">
-                    <i class="far fa-envelope"></i>
-                </a>
-                <a title="LinkedIn Profile" href="https://www.linkedin.com/in/max-schaefer-dev/" target="_blank">
-                    <i class="fab fa-linkedin-in"></i>
-                </a>
-                <a title="GitHub Profile" href="https://github.com/max-schaefer-dev" target="_blank">
-                    <i class="fab fa-github"></i>
-                </a>
-                <a title="Kaggle Profile" href="https://kaggle.com/maxschfer/" target="_blank">
-                    <i class="fab fa-kaggle"></i>
-                </a>
-                <a title="Twitter Profile" href="https://twitter.com/MaxSchaefer_" target="_blank">
-                    <i class="fab fa-twitter"></i>
-                </a>
+                <a title="Contact Email" href="mailto:samiree.blockchain@gmail.com" target="_blank"><i class="far fa-envelope"></i></a>
+                <a title="LinkedIn Profile" href="https://linkedin.com/in/sam-ire" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                <a title="GitHub Profile" href="https://github.com/con-fucius" target="_blank"><i class="fab fa-github"></i></a>
+                <a title="Discord" href="https://discord.com/users/zero_figures." target="_blank"><i class="fab fa-discord"></i></a>
+                <a title="X (Twitter) Profile" href="https://x.com/genghis_khxnt" target="_blank"><i class="fab fa-twitter"></i></a>
             </div>   
         </div>
 
         <!-- Cover Section -->
-        <section id="cover" class="cover-container bg-primary text-white text-center">
-            <div class="container" style="height:100%;">
-                <div class="row mt-1">
-                    <div class="col d-flex">
-                        <div id="cover-text" class="col">
-                            <p>Hey, my name is</p>
-                            <h1>Max Schäfer.</h1>
-                            <h1>Building something worthwhile.</h1>
-                            <p>I´m a in Germany-based software engineer who specializes in machine learning and deep learning with deeper interest in computer vision.</p>
-                            <button onclick="window.location.href='mailto:max@maxschaefer.tech';" type="button" class="btn btn-outline-1">Get In Touch</button>
+        <section id="cover" class="cover-container text-white text-center">
+            <div class="container" style="min-height: 90vh; display: flex; align-items: center;">
+                <div class="row mt-1 w-100 align-items-center"> 
+                    <div class="col-md-7"> 
+                        <div id="cover-text" class="text-md-start text-center"> 
+                            <h1 class="hero-quote-main">Most engineers build locks. Some build lockpicks. I study the hands that hold them.</h1>
+                            <h2 class="hero-name">Sam</h2>
+                            <p class="lead hero-title">AI/ML and Cryptography</p>
+                            <p>ML Engineer with experience building both intelligent autonomous and decentralized systems. I enjoy creating and developing things that make everyday tasks and processes easier. I also like reading systems synthesis studies and convergent engineering research.</p>
+                            <p>Currently works in the Channel Clusters unit, supporting Terminals Portfolio at Safaricom. Previously an AI Agentic Engineer intern at Nethermind where I contributed to Agentic and ZK engineering initiatives.</p>
                         </div>
                     </div>
-                    <div class="col" style="justify-content: center;">
-                        <canvas id=c></canvas>
+                    <div class="col-md-5 d-flex justify-content-center align-items-center hero-animation-col">
+                         <canvas id="c"></canvas> 
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- About me section -->
-        <section id="about" class="container text-center">
+        <!-- Skills Section -->
+        <section id="skills" class="container text-center">
             <div class="container">
-                <div class="row">
-                    <div class="col">
-                        <h1>About Me</h1>
-                        <p>I´m a Germany-based software engineer who specializes in Machine Learning and Deep Learning with deeper interest in computer vision.<br><br>
-                        I love to explore all the different paths in life and  to challenge myself to learn with things i never did before. What´s your next challenge?
-                        </p>
+                <h1>Skills</h1> 
+                <div class="skill-container row justify-content-center"> 
+                    <div class="col-lg col-md-4 col-sm-6"> 
+                        <ul class="skill-list">
+                            <h6>AI/ML</h6>
+                            <li>Deep Learning</li>
+                            <li>Computer Vision</li>
+                            <li>Large Language Models</li>
+                            <li>RAG</li>
+                            <li>Vector Databases</li>
+                            <li>Knowledge Graphs</li>
+                            <li>Model Evaluation/Benchmarking</li>
+                            <li>Agentic Systems/Orchestration</li>
+                        </ul>
+                    </div>
+                    <div class="col-lg col-md-4 col-sm-6">
+                        <ul class="skill-list">
+                            <h6>Programming Languages</h6>
+                            <li>Python</li>
+                            <li>JS</li>
+                            <li>TypeScript</li>
+                            <li>SQL</li>
+                            <li>Rust</li>
+                        </ul>
+                    </div>
+                    <div class="col-lg col-md-4 col-sm-6">
+                        <ul class="skill-list">
+                            <h6>Databases and Infrastructure</h6>
+                            <li>MongoDB</li>
+                            <li>Redis</li>
+                            <li>AWS</li>
+                            <li>GCP</li>
+                            <li>Cloudflare</li>
+                            <li>Hardhat</li>
+                        </ul>
+                    </div>
+                    <div class="col-lg col-md-6 col-sm-12"> 
+                        <ul class="skill-list">
+                            <h6>Blockchain Development</h6>
+                            <li>Onchain Data Extraction</li>
+                            <li>Ecosystem Research</li>
+                            <li>Private Blockchain Networks</li>
+                            <li>Blockchain Plugins</li>
+                            <li>DeFi Analysis</li>
+                        </ul>
+                    </div>
+                     <div class="col-lg col-md-6 col-sm-12"> 
+                        <ul class="skill-list">
+                            <h6>Business and Operations</h6>
+                            <li>Process Automation</li>
+                            <li>IT Consulting</li>
+                            <li>Solution Delivery</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-                        <!-- Skill lists -->
-                        <div class="skill-container">
-                            <div class="col">
-                                <ul class="skill-list">
-                                    <h6>Coding & ML</h6>
-                                    <li>PyTorch & Tensorflow</li>
-                                    <li>Keras</li>
-                                    <li>OpenCV</li>
-                                    <li>NumPy</li>
-                                    <li>Pandas</li>
-                                    <li>React</li>
-                                    <li>HTML, CSS, JavaScript</li>
-                                </ul>
-                            </div>
-                            <div class="col">
-                                <ul class="skill-list">
-                                    <h6>Engineering</h6>
-                                    <li>Azure & AWS</li>
-                                    <li>Snowflake</li>
-                                    <li>Databricks</li>
-                                    <li>SAS</li>
-                                    <li>Tableau</li>
-                                    <li>Django</li>
-                                    <li>Wordpress</li>
-                                </ul>
-                            </div>
-                            <div class="col">
-                                <ul class="skill-list">
-                                    <h6>Architecture</h6>
-                                    <li>Azure & AWS Cloud</li>
-                                    <li>Microsoft SCCM</li>
-                                    <li>Microsoft MLP</li>
-                                    <li>VM</li>
-                                    <li>Backup & Recovery</li>
-                                    <li>Windows & Linux</li>
-                                    <li>MS SQL, Postgres, Oracle</li>
-                                </ul>
+        <!-- Experience Section -->
+        <section id="experience" class="container"> 
+            <div class="container">
+                <h1 class="text-center">Experience</h1> 
+                <div class="experience-timeline">
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <h3><strong>AI Agentic Engineer Intern, Nethermind</strong></h3>
+                            <p class="experience-company-date">Jan 2025 – Apr 2025 | London, UK</p>
+                        </div>
+                        <ul class="experience-details">
+                            <li>Engineered autonomous agents with LLM-driven reasoning cycles, modular toolchains, and orchestration ADKs.</li>
+                            <li>Collaborated ZK engineering research teams to prototype agent orchestration strategies across distributed environments.</li>
+                            <li>Developed prompt strategies, embedded toolchains, and vector-assisted retrieval to augment agent capabilities.</li>
+                            <li>Built evaluation pipelines to benchmark agent performance, cost efficiency, and alignment with user intent.</li>
+                            <li>Enhanced local agent infrastructure by testing emergent libraries, optimizing toolchains, and deploying modular agent nodes.</li>
+                            <li>Reviewed academic literature and emerging frameworks to identify scalable engineering solutions for agent orchestration.</li>
+                        </ul>
+                    </div>
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <h3><strong>Blockchain Data Analyst, Securities.io</strong></h3>
+                            <p class="experience-company-date">Jun 2022 – Sep 2023 | San Francisco, CA</p>
+                        </div>
+                        <ul class="experience-details">
+                            <li>Implemented onchain data pipelines and extraction utilities for DeFi analytics, built dashboards to visualize protocol metrics.</li>
+                            <li>Led quantitative research on Layer 1/2 networks, synthesizing reports on gas economics, consensus, and crosschain activity.</li>
+                            <li>Authored technical publications on zk-proof systems, tokenomics, smart contract security, DeFi exploits and compliance.</li>
+                            <li>Delivered metric-based narratives and external-facing communication highlighting protocol and ecosystem milestones.</li>
+                            <li>Maintained contributor relationships and aligned reporting cadence with evolving strategic objectives.</li>
+                        </ul>
+                    </div>
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <h3><strong>Cloud/ML Trainee, Azubi Africa (AWS Re/Start)</strong></h3>
+                            <p class="experience-company-date">Jan 2022 – Apr 2022 | Nairobi, KE</p>
+                        </div>
+                        <ul class="experience-details">
+                            <li>Designed and provisioned cloud-native analytics pipelines and app stacks using AWS architecture best practices.</li>
+                            <li>Deployed models for image classification and computer vision applications, optimizing for accuracy and latency.</li>
+                            <li>Automated ML workflows from data ingestion to model serving using SageMaker, Step Functions, and CI/CD pipelines.</li>
+                            <li>Refined model performance through hyperparameter tuning, inference optimization, and model quantization.</li>
+                            <li>Implemented model-agnostic data pipelines using AWS microservices for low-latency, real-time inference.</li>
+                        </ul>
+                    </div>
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <h3><strong>IoT Systems Engineer Attachee, Gearbox</strong></h3>
+                            <p class="experience-company-date">Feb 2021 – May 2021 | Nairobi, KE</p>
+                        </div>
+                        <ul class="experience-details">
+                            <li>Prototyped motion-sensing IoT systems using Raspberry Pi/Arduino; integrated alert logic and edge processing.</li>
+                            <li>Validated sensor network designs via circuit simulation and proof-of-concept field testing.</li>
+                            <li>Configured Linux-based IoT gateways to bridge PLCs with telemetry and monitoring pipelines.</li>
+                            <li>Collaborated with mechatronics engineers in PCB design reviews and firmware development for application-specific ICs.</li>
+                            <li>Documented implementation progress and design trade-offs to streamline team alignment and internal information sharing.</li>
+                        </ul>
+                    </div>
+                    <div class="experience-item">
+                        <div class="experience-header">
+                            <h3><strong>IT Support Attachee, Ministry of Information, Communications and Digital Economy</strong></h3>
+                            <p class="experience-company-date">Jul 2019 – Oct 2019 | Nairobi, KE</p>
+                        </div>
+                        <ul class="experience-details">
+                            <li>Automated system patching workflows using WSUS and MECM (formerly SCCM).</li>
+                            <li>Diagnosed network disruptions (DNS, SMTP) via Wireshark captures and traceroute-based packet path analysis.</li>
+                            <li>Deployed Cisco and Juniper network infrastructure; configured firewall rules, VLANs, and switch logic.</li>
+                            <li>Resolved application faults through log tracing and dynamic hotfix deployment strategies.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Projects Section -->
+        <section id="projects" class="container text-center">
+            <div class="container">
+                <h1>Projects</h1>
+                <div class="row row-cols-1 row-cols-md-2 g-4">
+                    <div class="col">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">Q&A Retrieval Augmented Generation</h5>
+                                <p class="card-text">Quetzal is an end-to-end RAG system for information retrieval and question answering. By integrating web crawling, document processing, vector storage, and generative AI, the system provides accurate, source-attributed answers to complex research queries. The project leverages Google's Gemini models for language understanding and generation, Weaviate vector database for semantic search capabilities, and a Flask-based web interface for user interaction.</p>
+                                <p class="card-text"><small class="text-muted">Tech Stack: Gemini, Weaviate, Flask, Python</small></p>
+                                <p class="card-text">Repository: <a href="https://github.com/con-fucius/quetzal" target="_blank">GitHub</a>.</p>
                             </div>
                         </div>
                     </div>
-                    <div class="col image-col">
-                        <div id="image-container" class="col">
-                            <img class="img-fluid mb-5 d-block mx-auto" src="media/max_schaefer_500x500.jpg">
+                    <div class="col">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">AI Agentic Workflow Automation Suite</h5>
+                                <p class="card-text">AI agent management platform leveraging Next.js, TypeScript, and FastAPI. The platform orchestrates autonomous AI agents with workflow automation capabilities, integrating with Google Workspace, Slack, Notion, Telegram, GitHub, and LangFuse for observability. Features a distributed task processing architecture using Redis and MongoDB, with authentication via Okta.</p>
+                                <p class="card-text"><small class="text-muted">Tech Stack: Next.js, TypeScript, FastAPI, Redis, MongoDB, Okta, LangFuse</small></p>
+                                <p class="card-text">Proprietary Implementation. Codebase restricted under NDA – details available upon request.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">Scalable Knowledge Graph for Scientific Publications</h5>
+                                <p class="card-text">A high-performance multi-million-node Neo4j knowledge graph infrastructure, synthesizing academic metadata including cross-institutional author affiliations, multi-domain citation networks, and publication hierarchies. The graph powers semantic search systems through its dynamic relationship mapping capabilities. It combines GPT models with vector-indexed graph traversals in a RAG pipeline to power context-aware paper recommendations.</p>
+                                <p class="card-text"><small class="text-muted">Tech Stack: Neo4j, GPT, Python</small></p>
+                                <p class="card-text">Proprietary Implementation. Codebase restricted under NDA – details available upon request.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">Zero-Knowledge ASP System</h5>
+                                <p class="card-text">A zero-knowledge attestation service provider PoC system enabling private and compliant blockchain transactions. Combines optimized Circom circuits using PLONK proving schemes with a multi-chain compatible architecture to verify Merkle tree-based membership claims. Python-based attestation service aggregates decentralized oracle data and constructs Merkle tree structures, generating cryptographic proofs that are verified on-chain through a Solidity verifier contract.</p>
+                                <p class="card-text"><small class="text-muted">Tech Stack: Circom, PLONK, Solidity, Python, Merkle Trees</small></p>
+                                <p class="card-text">Repository: <a href="https://github.com/con-fucius/zero-knowledge-asp-attestation" target="_blank">GitHub</a>.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Competition section -->
-        <section id="competitions" class="bg-primary text-white">
-            <div class="container text-center">
-                <h1>Competitions</h1>
-                <table class="table">
-                    <thead>
-                      <tr>
-                        <th scope="col">Rank</th>
-                        <th scope="col">Competition</th>
-                        <th class="desktop" scope="col">Data Type</th>
-                        <th scope="col">Problem Type</th>
-                        <th scope="col">Code</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Top 3% - 23/713</td>
-                            <td><a href="https://www.drivendata.org/competitions/93/nasa-mars-spectrometry/" target="_blank">Mars Spectrometry: Detect Evidence for Past Habitability</a></td>
-                            <td class="desktop">Tabular Data</td>
-                            <td>Multi-Label Classification</td>
-                            <td><a href="https://github.com/max-schaefer-dev/mars-spectrometry-23th-place-solution" target="_blank"><i class="fas fa-code"></i></a></td>
-                        </tr>
-                        <tr>
-                            <td>Top 2% - 19/854</td>
-                            <td><a href="https://www.drivendata.org/competitions/83/cloud-cover/" target="_blank">On Cloud N - Cloud Cover Detection Challange</a></td>
-                            <td class="desktop">Images (geoTIFF)</td>
-                            <td>Semantic Segmentation</td>
-                            <td><a href="https://github.com/max-schaefer-dev/on-cloud-n-19th-place-solution" target="_blank"><i class="fas fa-code"></i></a></td>
-                        </tr>
-                        <tr>
-                            <td>Top 7% - 19/296</td>
-                            <td><a href="https://www.drivendata.org/competitions/82/competition-wildlife-video-depth-estimation/page/390/" target="_blank">Deep Chimpact: Depth Estimation for Wildlife Conservation</a></td>
-                            <td class="desktop">Video (mp4)</td>
-                            <td>Depth Estimation</td>
-                            <td><i class="fas fa-code"></i></td>
-                        </tr>
-                        <tr>
-                            <td>Top 8% - 33/403</td>
-                            <td><a href="https://https-deeplearning-ai.github.io/data-centric-comp/" target="_blank">Data-Centric AI Competition</a></td>
-                            <td class="desktop">Images (jpg)</td>
-                            <td>Multi-Class Classification</td>
-                            <td><i class="fas fa-code"></i></td>
-                        </tr>
-                        <tr>
-                            <td>Top 24% - 356/1505</td>
-                            <td><a href="https://www.kaggle.com/c/sartorius-cell-instance-segmentation" target="_blank">Sartorius - Cell Instance Segmentation</a></td>
-                            <td class="desktop">Images (png)</td>
-                            <td>Instance Segmentation</td>
-                            <td><i class="fas fa-code"></i></td>
-                        </tr>
-                        <tr>
-                            <td>Top 27% - 103/383</td>
-                            <td><a href="https://www.kaggle.com/c/landmark-recognition-2021" target="_blank">Google Landmark Recognition 2021</a></td>
-                            <td class="desktop">Images (jpg)</td>
-                            <td>Object Recognition</td>
-                            <td><i class="fas fa-code"></i></td>
-                        </tr>
-                    </tbody>
-                  </table>
-            </div>
-        </section>
-
-        <!-- Competition section -->
+        <!-- Achievements Section -->
         <section id="achievements" class="container text-center">
             <h1>Achievements</h1>
             <table class="table">
@@ -237,107 +298,96 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>12/23</td>
-                        <td>Databricks Certified Data Engineer Associate</td>
+                        <td>In Progress</td>
+                        <td>Kubernetes and Cloud Native Essentials</td>
                         <td>Certification</td>
-                        <td><a href="https://credentials.databricks.com/e3d63fb6-1230-49ea-9c0b-3cb63ed47d87" target="_blank">Databricks</a></td>
+                        <td><a href="https://trainingportal.linuxfoundation.org/learn/course/kubernetes-and-cloud-native-essentials-lfs250/course-introduction/course-information" target="_blank">Linux Foundation</a></td>
                     </tr>
                     <tr>
-                        <td>08/23</td>
-                        <td>Microsoft Certified: Azure Data Scientist Associate</td>
+                        <td>In Progress</td>
+                        <td>Oracle AI Vector Search Professional Certification</td>
                         <td>Certification</td>
-                        <td><a href="https://learn.microsoft.com/api/credentials/share/en-us/MaxSCHFER-5624/E803EA1F44B8B18C?sharingId" target="_blank">Microsoft</a></td>
+                        <td><a href="https://education.oracle.com/oracle-database-23ai-certified-ai-professional/trackp_DB23AIOCP" target="_blank">Oracle</a></td>
                     </tr>
                     <tr>
-                        <td>01/23</td>
-                        <td>SnowPro Core Certification</td>
+                        <td>In Progress</td>
+                        <td>Neo4j Certified Professional</td>
                         <td>Certification</td>
-                        <td><a href="https://achieve.snowflake.com/40adeaf8-eaa3-47fc-92d2-305784f805cf" target="_blank">Snowflake</a></td>
-                    </tr>
-                    <tr>
-                        <td>09/22</td>
-                        <td>SAS Certified Specialist: Machine Learning Using SAS Viya 3.5</td>
-                        <td>Certification</td>
-                        <td><a href="media/SAS_Certified_Specialist_Machine_Learning_Using_SAS_Viya_3.5_certificate.pdf" target="_blank">SAS</a></td>
-                    </tr>
-                    <tr>
-                        <td>09/21</td>
-                        <td>Deep Learning Engineer</td>
-                        <td>Certification</td>
-                        <td><a href="https://app.workera.ai/public/candidate/certificate?code=Z6NQM9CB" target="_blank">Workera.ai</a></td>
-                    </tr>
-                    <tr>
-                        <td>07/21</td>
-                        <td>TensorFlow: Data and Deployment</td>
-                        <td>Specialization (4 courses)</td>
-                        <td><a href="https://coursera.org/share/fce38d52b7f75d49052c8debb5bdf9a0" target="_blank">Coursera</a></td>
-                    </tr>
-                    <tr>
-                        <td>06/21</td>
-                        <td>AI for Medicine</td>
-                        <td>Specialization (3 courses)</td>
-                        <td><a href="https://coursera.org/share/f5ba859860c811b6ce42f8d7dabc2ee8" target="_blank">Coursera</a></td>   
-                    </tr>
-                    <tr>
-                        <td>06/21</td>
-                        <td>TensorFlow: Advanced Techniques</td>
-                        <td>Specialization (4 courses)</td>
-                        <td><a href="https://coursera.org/share/8f14e35bfc3da11a06bc8f983c7ae497" target="_blank">Coursera</a></td>
-                    </tr>
-                    <tr>
-                        <td>06/21</td>
-                        <td>TensorFlow Developer</td>
-                        <td>Specialization (4 courses)</td>
-                        <td><a href="https://coursera.org/share/863122ae8214e5b9873a02fa8357dc4b" target="_blank">Coursera</a></td>
-                    </tr>
-                    <tr>
-                        <td>05/21</td>
-                        <td>Deep Learning</td>
-                        <td>Specialization (5 courses)</td>
-                        <td><a href="https://coursera.org/share/933073113c9444d5e9b007b18128459c" target="_blank">Coursera</a></td>
+                        <td><a href="https://graphacademy.neo4j.com/certifications/neo4j-certification/" target="_blank">Neo4j</a></td>
                     </tr>
                 </tbody>
               </table>
         </section>
 
-        <!-- Contact me section -->
-        <section id="contact" class="bg-primary text-white">
-            <div class="container text-center">
-                <h1>Get In Touch</h1>
-                <p>Although I'm not currently looking for any new opportunities, my inbox is always open. Whether you have a question or just want to say hi, I'll try my best to get back to you!</p>
-                <button onclick="window.location.href='mailto:prv.maxim@gmail.com';" type="button" class="btn btn-outline-1">Say Hello</button>
+        <!-- Research Section -->
+        <section id="research" class="container text-center">
+            <div class="container">
+                <h1>Research</h1>
+                <div id="research-content" class="text-start"> 
+                    <h5 class="research-item-title"><a href="https://github.com/con-fucius/ai-agents-framework-comparison" target="_blank">Agentic Tools and Frameworks Comparison</a></h5>
+                </div>
             </div>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
-            <!-- <script src="js/neural_network.js"></script> -->
-            <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
-            <script src="js/navbar.js"></script>
-            <script src="js/neural_network.js"></script>
         </section>
+        
+        <!-- Brain Dump Section -->
+        <section id="braindump" class="container text-center">
+            <div class="container">
+                <h1>Brain Dump</h1>
+                <p>A collection of articles, thoughts, ideas, and musings.</p>
+                <div class="row">
+                    <div class="col-md-4">
+                        <h2 style="font-weight: normal;">Articles</h2>
+                        <ul class="list-group">
+                            <li class="list-group-item"><a href="blog/Cloudflare Agentic Ecosystem.md" target="_blank">Cloudflare Agentic Ecosystem</a></li>
+                            <li class="list-group-item"><a href="blog/CORS.md" target="_blank">CORS</a></li>
+                            <li class="list-group-item"><a href="blog/LLM Observability.md" target="_blank">LLM Observability</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                        <h2 style="font-weight: normal;">Reading List</h2>
+                        <ul class="list-group text-start">
+                            <li class="list-group-item">A Game Theorist's Guide to Success in Business and Life by A. K. Dixit & B. J. Nalebuff</li>
+                            <li class="list-group-item">How the Quest for the Ultimate Learning Machine Will Remake Our World by Pedro Domingos</li>
+                            <li class="list-group-item">Being Human in the Age of Algorithms by Hannah Fry</li>
+                            <li class="list-group-item">The Art and Science of Prediction by P. E. Tetlock & Dan Gardner</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                        <h2 style="font-weight: normal;">Working On</h2>
+                        <div class="working-on-content">
+                            <p>A lot. I'll update as soon as I can.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Contact me section -->
+        <section id="contact" class="bg-primary text-white"> 
+            <div class="container text-center">
+                <h1>Let's Connect</h1>
+                <p>If you are working on exciting projects in AI or cryptography, or wish to discuss potential collaborations, feel free to connect.</p>
+            </div>
+        </section>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
+        <script src="js/navbar.js"></script>
+        <script src="js/neural_network.js"></script> 
+        <script src="js/background_animation.js"></script>
     </body>
 
     <!-- Footer -->
-    <footer class="container-cover bg-primary text-center text-white justify-content-center">
-
-        <!-- links to socials for mobile clients -->
+    <footer class="container-cover bg-primary text-center text-white justify-content-center"> 
         <div id="social-bar" class="container text-center">
             <div class="d-flex justify-content-around">
-                <a title="Contact Email" href="mailto:prv.maxim@gmail.com" target="_blank">
-                    <i class="far fa-envelope"></i>
-                </a>
-                <a title="LinkedIn Profile" href="https://www.linkedin.com/in/max-schaefer-dev/" target="_blank">
-                    <i class="fab fa-linkedin-in"></i>
-                </a>
-                <a title="GitHub Profile" href="https://github.com/max-schaefer-dev" target="_blank">
-                    <i class="fab fa-github"></i>
-                </a>
-                <a title="Kaggle Profile" href="https://www.kaggle.com/maxschfer" target="_blank">
-                    <i class="fab fa-kaggle"></i>
-                </a>
-                <a title="Twitter Profile" href="https://twitter.com/MaxSchaefer_" target="_blank">
-                    <i class="fab fa-twitter"></i>
-                </a>
+                <a title="Contact Email" href="mailto:samiree.blockchain@gmail.com" target="_blank"><i class="far fa-envelope"></i></a>
+                <a title="LinkedIn Profile" href="https://linkedin.com/in/sam-ire" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                <a title="GitHub Profile" href="https://github.com/con-fucius" target="_blank"><i class="fab fa-github"></i></a>
+                <a title="Discord" href="https://discord.com/users/zero_figures." target="_blank"><i class="fab fa-discord"></i></a>
+                <a title="X (Twitter) Profile" href="https://x.com/genghis_khxnt" target="_blank"><i class="fab fa-twitter"></i></a>
             </div>
         </div>
-        <p>Designed & build by Max Schäfer</p>
+        <p>© 2025 Sam</p>
     </footer>
 </html>
